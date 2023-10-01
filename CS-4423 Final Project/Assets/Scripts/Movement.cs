@@ -9,10 +9,11 @@ public class Movement : MonoBehaviour
     private bool doubleJump;
     
     
-    
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform checkGround;
     [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] AnimationStateChanger animationStateChanger;
 
     void Awake()
     {
@@ -31,20 +32,35 @@ public class Movement : MonoBehaviour
         return Physics2D.OverlapCircle(checkGround.position,0.2f, groundLayer);
     }
     
+    public void moveRB(Vector3 vel)
+    {
+        rb.velocity = vel;
+        
+        if(vel.magnitude > 0)
+        {
+            animationStateChanger.ChangeAnimationState("Run");
+        }
+        else
+        {
+            animationStateChanger.ChangeAnimationState("Idle");
+        }
+    }
+    
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 vel = Vector3.zero;
         if(Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(speed*Time.deltaTime,0,0);
+            vel.x = speed;
             transform.localScale = new Vector3(1,1,1);
             
         }
 
         if(Input.GetKey(KeyCode.A))
         {
-            transform.position -= new Vector3(speed*Time.deltaTime,0,0); 
+            vel.x = -speed;
             transform.localScale = new Vector3(-1,1,1);
         }
 
@@ -58,6 +74,8 @@ public class Movement : MonoBehaviour
             }
         }
 
+        moveRB(vel);
+
         if(onGround() && !Input.GetKey(KeyCode.W))
         {
             doubleJump = false;
@@ -68,8 +86,6 @@ public class Movement : MonoBehaviour
             transform.position -= new Vector3(0,speed*Time.deltaTime,0);
         }
         */
-
-        
     }
 
     
