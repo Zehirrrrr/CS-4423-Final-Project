@@ -10,15 +10,22 @@ public class AnimationStateChanger : MonoBehaviour
 
 
 
-    public void ChangeAnimationState(string newAnimationState)
-    {
-        currentState = newAnimationState;
-        animator.Play(newAnimationState);
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
         ChangeAnimationState(currentState);
+    }
+
+    public void ChangeAnimationState(string newAnimationState)
+    {
+        if(newAnimationState == currentState)
+        {
+            return;
+        }
+
+        currentState = newAnimationState;
+        animator.Play(newAnimationState);
     }
 
     // Update is called once per frame

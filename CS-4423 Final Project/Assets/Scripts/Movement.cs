@@ -5,7 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 1;
+    [SerializeField] float jumpStrength = 10;
     private bool doubleJump;
     
     
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
     
     public void moveRB(Vector3 vel)
     {
+        vel.y = rb.velocity.y;
         rb.velocity = vel;
         
         if(vel.magnitude > 0)
@@ -45,6 +47,7 @@ public class Movement : MonoBehaviour
             animationStateChanger.ChangeAnimationState("Idle");
         }
     }
+
     
 
     // Update is called once per frame
@@ -68,13 +71,13 @@ public class Movement : MonoBehaviour
         {
             if(onGround() || doubleJump)
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + 5f);
-
+                rb.velocity = new Vector3(0,jumpStrength,0);
+                Debug.Log("Jump");
                 doubleJump = !doubleJump;
             }
         }
 
-        moveRB(vel);
+        
 
         if(onGround() && !Input.GetKey(KeyCode.W))
         {
@@ -86,6 +89,8 @@ public class Movement : MonoBehaviour
             transform.position -= new Vector3(0,speed*Time.deltaTime,0);
         }
         */
+
+        moveRB(vel);
     }
 
     
