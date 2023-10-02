@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
         vel.y = rb.velocity.y;
         rb.velocity = vel;
         
-        if(vel.magnitude > 0)
+        if(vel.x > 0 || vel.x < 0)
         {
             animationStateChanger.ChangeAnimationState("Run");
         }
