@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] LayerMask enemyLayers;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
+    [SerializeField] Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         //Play Animation
-        animationStateChanger.ChangeAnimationState("Attack");
+        animator.SetTrigger("Attack");
         //Detect Enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
