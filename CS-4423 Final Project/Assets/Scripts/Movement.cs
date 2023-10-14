@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
             if(onGround() || doubleJump)
             {
                 rb.velocity = new Vector3(0,jumpStrength,0);
-                Debug.Log("Jump");
+                //Debug.Log("Jump");
                 doubleJump = !doubleJump;
             }
         }

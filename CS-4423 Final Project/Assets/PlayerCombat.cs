@@ -9,6 +9,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] float attackRange = 0.5f;
     [SerializeField] int attackDamage = 2;
     [SerializeField] LayerMask enemyLayers;
+    [SerializeField] float attackCooldown = 2f;
+    float nextAttackTime = 0f;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Animator animator;
@@ -21,10 +23,20 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Time.time >= nextAttackTime)
         {
-            Attack();
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackCooldown;
+            }
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Parry();
+        }
+        
     }
 
     void Attack()
@@ -40,8 +52,13 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDmg(attackDamage);
-            Debug.Log("We hit " + enemy.name);
+            //Debug.Log("We hit " + enemy.name);
         }
+    }
+
+    void Parry()
+    {
+        animator.SetTrigger("Parry");
     }
 
     void OnDrawGizmosSelected()
