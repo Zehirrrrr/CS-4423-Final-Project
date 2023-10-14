@@ -8,9 +8,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange = 0.5f;
     [SerializeField] int attackDamage = 2;
-    [SerializeField] LayerMask enemyLayers;
     [SerializeField] float attackCooldown = 2f;
     float nextAttackTime = 0f;
+
+    [SerializeField] Transform parryPoint;
+    [SerializeField] float parryRange = 0.5f;
+    [SerializeField] float parryCooldown = 3f;
+    float nextParryTime = 0f;
+
+    [SerializeField] LayerMask enemyLayers;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Animator animator;
@@ -32,9 +38,13 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Time.time >= nextParryTime)
         {
-            Parry();
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Parry();
+                nextParryTime = Time.time + 1f / parryCooldown;
+            }
         }
         
     }
@@ -68,6 +78,12 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        if(parryPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(parryPoint.position, parryRange);
     }
     
 }

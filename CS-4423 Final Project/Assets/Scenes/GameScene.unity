@@ -789,6 +789,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &661978051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661978052}
+  m_Layer: 0
+  m_Name: ParryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661978052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661978051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6799998, y: 0.03999996, z: 0.0014365325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 881822797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881822795
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +910,7 @@ Transform:
   m_Children:
   - {fileID: 1228711630}
   - {fileID: 1082968816}
+  - {fileID: 661978052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &881822799
@@ -1023,10 +1055,13 @@ MonoBehaviour:
   attackPoint: {fileID: 1082968816}
   attackRange: 0.5
   attackDamage: 2
+  attackCooldown: 2
+  parryPoint: {fileID: 661978052}
+  parryRange: 0.5
+  parryCooldown: 3
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 2
   animationStateChanger: {fileID: 881822803}
   animator: {fileID: 881822802}
 --- !u!1 &1082968815
