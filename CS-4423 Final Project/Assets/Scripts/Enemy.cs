@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int maxHealth = 10;
+    [SerializeField] int postureHealth = 2;
+    int currentPosture;
     int currentHealth;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,16 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+
+    public void TakePostureDmg(int postureDamage)
+    {
+        currentPosture -= postureDamage;
+
+        if(currentPosture <= 0)
+        {
+            Stun();
+        }
+    }
     
 
     //Play animation
@@ -30,5 +42,10 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy died");
+    }
+
+    void Stun()
+    {
+        Debug.Log("Enemy stunned");
     }
 }

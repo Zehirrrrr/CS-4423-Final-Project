@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
 
     [SerializeField] float speed = 1;
@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
     
     
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform checkGround;
-    [SerializeField] private LayerMask groundLayer;
+    //[SerializeField] private Transform checkGround;
+    //[SerializeField] private LayerMask groundLayer;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
 
@@ -27,73 +27,62 @@ public class Movement : MonoBehaviour
     {
         
     }
-
+/*
     private bool onGround()
     {
         return Physics2D.OverlapCircle(checkGround.position,0.2f, groundLayer);
     }
-    
+*/   
     public void moveRB(Vector3 vel)
     {
         vel.y = rb.velocity.y;
         rb.velocity = vel;
-        
-        if(vel.x > 0 || vel.x < 0)
+
+        if(vel.magnitude > 0)
         {
             animationStateChanger.ChangeAnimationState("Run");
+
+            if(vel.x > 0)
+            {
+                transform.localScale = new Vector3(1,1,1);
+            }
+            else if(vel.x < 0)
+            {
+                transform.localScale = new Vector3(-1,1,1);
+            }
         }
         else
         {
             animationStateChanger.ChangeAnimationState("Idle");
         }
+
     }
 
     
-
+/*
     // Update is called once per frame
     void Update()
     {
         Vector3 vel = Vector3.zero;
-        if(Input.GetKey(KeyCode.D))
+        //float horizontalMovement = this.GetAxisRaw("Horizontal");
+        
+        if(vel > 0)
         {
             vel.x = speed;
             transform.localScale = new Vector3(1,1,1);
             
         }
 
-        if(Input.GetKey(KeyCode.A))
+        if(vel < 0)
         {
             vel.x = -speed;
             transform.localScale = new Vector3(-1,1,1);
         }
 
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            if(onGround() || doubleJump)
-            {
-                rb.velocity = new Vector3(0,jumpStrength,0);
-                //Debug.Log("Jump");
-                doubleJump = !doubleJump;
-            }
-        }
-
-        
-
-        if(onGround() && !Input.GetKey(KeyCode.W))
-        {
-            doubleJump = false;
-        }
-        /*
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.position -= new Vector3(0,speed*Time.deltaTime,0);
-        }
-        */
-
         moveRB(vel);
     }
 
-
+*/
     public void MoveToward(Vector3 targetPosition)
     {
         Vector3 direction = targetPosition - transform.position;
