@@ -6,6 +6,7 @@ public class SimpleAI : MonoBehaviour
 {
     EnemyMovement movement;
     EnemyCombat combat;
+    Enemy enemy;
 
     [SerializeField] float viewRadius = 5;
     [SerializeField] float attackRadius = 1;
@@ -60,6 +61,8 @@ public class SimpleAI : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         attacking = false;
     }
+
+    
 
     public void FollowPlayer()
     {

@@ -44,8 +44,17 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy died");
     }
 
-    void Stun()
+    IEnumerator stunCoroutine()
     {
+        //combat.Attack();
+        yield return new WaitForSeconds(2f);
+        //attacking = false;
+        currentPosture = 2;
+    }
+
+    public void Stun()
+    {
+        StartCoroutine(stunCoroutine());
         Debug.Log("Enemy stunned");
     }
 }

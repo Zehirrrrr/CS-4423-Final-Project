@@ -10,6 +10,7 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] int attackDamage = 2;
     [SerializeField] float attackCooldown = 2f;
     float nextAttackTime = 0f;
+    [SerializeField] GameObject atkPoint;
 
 
     [SerializeField] LayerMask playerLayers;
@@ -58,8 +59,8 @@ public class EnemyCombat : MonoBehaviour
         //Apply DMG
         foreach(Collider2D player in hitPlayer)
         {
-           //player.GetComponent<Player>().TakeDmg(attackDamage);
-            //Debug.Log("We hit " + enemy.name);
+           player.GetComponent<Player>().TakeDmg(attackDamage);
+            Debug.Log("We hit " + player.name);
         }
     }
 /*
@@ -83,6 +84,16 @@ public class EnemyCombat : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public void disableAttackHitbox()
+    {
+        atkPoint.SetActive(false);
+    }
+
+    public void enableAttackHitbox()
+    {
+        atkPoint.SetActive(true);
     }
 /*
         if(parryPoint == null)

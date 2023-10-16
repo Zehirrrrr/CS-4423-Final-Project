@@ -6,8 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     [SerializeField] float speed = 1;
-    [SerializeField] float jumpStrength = 10;
-    private bool doubleJump;
+    
     
     
     [SerializeField] private Rigidbody2D rb;
@@ -27,12 +26,7 @@ public class EnemyMovement : MonoBehaviour
     {
         
     }
-/*
-    private bool onGround()
-    {
-        return Physics2D.OverlapCircle(checkGround.position,0.2f, groundLayer);
-    }
-*/   
+
     public void moveRB(Vector3 vel)
     {
         vel.y = rb.velocity.y;
@@ -59,30 +53,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     
-/*
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 vel = Vector3.zero;
-        //float horizontalMovement = this.GetAxisRaw("Horizontal");
-        
-        if(vel > 0)
-        {
-            vel.x = speed;
-            transform.localScale = new Vector3(1,1,1);
-            
-        }
 
-        if(vel < 0)
-        {
-            vel.x = -speed;
-            transform.localScale = new Vector3(-1,1,1);
-        }
-
-        moveRB(vel);
-    }
-
-*/
     public void MoveToward(Vector3 targetPosition)
     {
         Vector3 direction = targetPosition - transform.position;
@@ -96,8 +67,3 @@ public class EnemyMovement : MonoBehaviour
     }
     
 }
-/*
-https://www.youtube.com/watch?v=K1xZ-rycYY8
-https://www.youtube.com/watch?v=RdhgngSUco0
-A few tutorials I used to help with some of the movement.
-*/

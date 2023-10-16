@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    
 
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange = 0.5f;
@@ -18,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     float nextParryTime = 0f;
 
     [SerializeField] LayerMask enemyLayers;
+    [SerializeField] LayerMask parryLayer;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Animator animator;
@@ -44,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.R))
             {
                 Parry();
-                nextParryTime = Time.time + 1f / parryCooldown;
+                //nextParryTime = Time.time + 1f / parryCooldown;
             }
         }
         
@@ -68,12 +70,12 @@ public class PlayerCombat : MonoBehaviour
     {
         animator.SetTrigger("Parry");
 
-        Collider2D[] parriedEnemies = Physics2D.OverlapCircleAll(parryPoint.position, parryRange, enemyLayers);
+        Collider2D[] parriedEnemies = Physics2D.OverlapCircleAll(parryPoint.position, parryRange, parryLayer);
 
 
         foreach(Collider2D enemy in parriedEnemies)
         {
-            enemy.GetComponent<Enemy>().TakePostureDmg(parryDamage);
+            enemy.transform.parent.GetComponent<Enemy>().TakePostureDmg(parryDamage);
         }
     }
 

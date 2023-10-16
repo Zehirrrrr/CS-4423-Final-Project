@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EPlayer : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] int maxHealth = 10;
     [SerializeField] int postureHealth = 2;
