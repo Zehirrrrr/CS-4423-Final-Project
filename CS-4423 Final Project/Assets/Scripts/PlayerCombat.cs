@@ -50,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.R))
             {
                 Parry();
-                //nextParryTime = Time.time + 1f / parryCooldown;
+                nextParryTime = Time.time + 1f / parryCooldown;
             }
         }
         
@@ -74,13 +74,14 @@ public class PlayerCombat : MonoBehaviour
     void Parry()
     {
         animator.SetTrigger("Parry");
-        parrySFX.Play();
+        
         Collider2D[] parriedEnemies = Physics2D.OverlapCircleAll(parryPoint.position, parryRange, parryLayer);
 
 
         foreach(Collider2D enemy in parriedEnemies)
         {
             enemy.transform.parent.GetComponent<Enemy>().TakePostureDmg(parryDamage);
+            parrySFX.Play();
         }
     }
 

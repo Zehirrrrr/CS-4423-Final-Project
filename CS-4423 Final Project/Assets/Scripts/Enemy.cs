@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         movement = GetComponent<EnemyMovement>();
+        currentPosture = postureHealth;
     }
     
     // Start is called before the first frame update

@@ -14,6 +14,7 @@ public class SimpleAI : MonoBehaviour
     [SerializeField] bool attacking = false;
     [SerializeField] Transform playerTransform;
     SpriteRenderer enemySprite;
+    
 
     //[SerializeField] bool stunned;
     //[SerializeField] int postureHealth = 2;
@@ -53,6 +54,7 @@ public class SimpleAI : MonoBehaviour
         
         else if(enemy.stunned == true)
         {
+            
             Stun();
             Debug.Log("AI Stun");
         }
@@ -72,6 +74,7 @@ public class SimpleAI : MonoBehaviour
     IEnumerator stunCoroutine()
     {
         //play stun animation
+        
         movement.Stop();
         enemySprite.color = new Color(1,0,0,1);
         yield return new WaitForSeconds(2f);
