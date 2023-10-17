@@ -36,14 +36,24 @@ public class Player : MonoBehaviour
     }
     
 
-    //Play animation
-
+    void Update()
+    {
+        ExitToMainMenu();
+    }
     
 
     void Die()
     {
         Debug.Log("Player died");
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void ExitToMainMenu()
+    {
+        if(Input.GetKeyDown("escape"))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     void Stun()
