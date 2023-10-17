@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    EnemyMovement movement;
+
     [SerializeField] int maxHealth = 10;
-    [SerializeField] int postureHealth = 2;
-    int currentPosture;
-    int currentHealth;
+    public int postureHealth = 2;
+    public bool stunned;
+    public int currentPosture;
+    public int currentHealth;
+    
+
+    void Awake()
+    {
+        movement = GetComponent<EnemyMovement>();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +31,7 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             Die();
+            
         }
     }
 
@@ -30,31 +41,18 @@ public class Enemy : MonoBehaviour
 
         if(currentPosture <= 0)
         {
-            Stun();
+            stunned = true;
+            Debug.Log("stunned = true");
         }
     }
     
-
-    //Play animation
-
-    
-
     void Die()
     {
         Debug.Log("Enemy died");
+        Destroy(gameObject);
     }
 
-    IEnumerator stunCoroutine()
-    {
-        //combat.Attack();
-        yield return new WaitForSeconds(2f);
-        //attacking = false;
-        currentPosture = 2;
-    }
+    
 
-    public void Stun()
-    {
-        StartCoroutine(stunCoroutine());
-        Debug.Log("Enemy stunned");
-    }
+    
 }
