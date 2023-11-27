@@ -27,6 +27,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] AudioSource attackSFX;
     [SerializeField] AudioSource parrySFX;
 
+    [SerializeField] ParticleSystem parryParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +83,7 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in parriedEnemies)
         {
             enemy.transform.parent.GetComponent<Enemy>().TakePostureDmg(parryDamage);
+            parryParticles.Emit(5);
             parrySFX.Play();
         }
     }

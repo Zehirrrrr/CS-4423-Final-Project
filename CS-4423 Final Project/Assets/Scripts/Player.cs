@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] int postureHealth = 2;
     int currentPosture;
     int currentHealth;
+    [SerializeField] ParticleSystem blood;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     public void TakeDmg(int damage)
     {
         currentHealth -= damage;
-
+        blood.Emit(5);
         if(currentHealth <= 0)
         {
             Die();
@@ -59,5 +60,15 @@ public class Player : MonoBehaviour
     void Stun()
     {
         Debug.Log("Player stunned");
+    }
+
+    public int getCurrHealth()
+    {
+        return currentHealth;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 }
