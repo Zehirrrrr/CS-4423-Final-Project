@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public bool stunned;
     public int currentPosture;
     public int currentHealth;
+    [SerializeField] ParticleSystem blood;
     
 
     void Awake()
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
     public void TakeDmg(int damage)
     {
         currentHealth -= damage;
-
+        blood.Emit(5);
         if(currentHealth <= 0)
         {
             Die();

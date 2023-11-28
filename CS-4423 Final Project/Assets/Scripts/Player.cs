@@ -5,15 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 10;
-    [SerializeField] int postureHealth = 2;
+    [SerializeField] int maxHealth;
+    [SerializeField] int postureHealth;
     int currentPosture;
-    int currentHealth;
+    [SerializeField] int currentHealth;
     [SerializeField] ParticleSystem blood;
+
+    [SerializeField] int numFlasks;
+    [SerializeField] ParticleSystem heal;
+    
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        maxHealth = 100;
+        numFlasks = 3;
     }
 
     public void TakeDmg(int damage)
@@ -25,6 +31,24 @@ public class Player : MonoBehaviour
             Die();
         }
     }
+
+    public void Heal()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(currentHealth != maxHealth && numFlasks > 0)
+            {
+                    numFlasks = numFlasks - 1;
+                    heal.Emit(5);
+                    currentHealth = maxHealth;
+                    Debug.Log("Player Healed, Flasks left =" + numFlasks);
+            }
+        }
+        
+    }
+
+        
+
 
     public void TakePostureDmg(int postureDamage)
     {
@@ -39,6 +63,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Heal();
         ExitToMainMenu();
     }
     
@@ -70,5 +95,10 @@ public class Player : MonoBehaviour
     public int getMaxHealth()
     {
         return maxHealth;
+    }
+
+    public int getNumFlasks()
+    {
+        return numFlasks;
     }
 }

@@ -9,6 +9,7 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
+
     
     
 
@@ -18,6 +19,7 @@ public class HealthBarScript : MonoBehaviour
         //player = GameObject.FindWithTag("Player");
         maxHealth = player.GetComponent<Player>().getMaxHealth();
         currentHealth = maxHealth;
+       
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class HealthBarScript : MonoBehaviour
         {
             currentHealth -= 1;
         }
-
     }
+
+    
 }

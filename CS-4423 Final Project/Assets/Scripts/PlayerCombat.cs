@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     
-
+    
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange = 0.5f;
     [SerializeField] int attackDamage = 2;
@@ -55,7 +55,6 @@ public class PlayerCombat : MonoBehaviour
                 nextParryTime = Time.time + 1f / parryCooldown;
             }
         }
-        
     }
 
     void Attack()
