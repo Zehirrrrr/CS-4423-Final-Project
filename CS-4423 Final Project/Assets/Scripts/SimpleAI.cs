@@ -38,6 +38,8 @@ public class SimpleAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Vector3.Distance(transform.position,playerTransform.position));
+
         if(Vector3.Distance(transform.position,playerTransform.position) < attackRadius && enemy.stunned == false)
         {
             if(attacking == false)

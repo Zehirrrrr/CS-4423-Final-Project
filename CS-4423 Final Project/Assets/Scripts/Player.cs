@@ -63,6 +63,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(this.transform.position.y > 20)
+        {
+            Die();
+        }
+
+
         Heal();
         ExitToMainMenu();
     }
@@ -92,6 +98,11 @@ public class Player : MonoBehaviour
         return currentHealth;
     }
 
+    public void setCurrHealth(int health)
+    {
+        currentHealth = health;
+    }
+
     public int getMaxHealth()
     {
         return maxHealth;
@@ -100,5 +111,10 @@ public class Player : MonoBehaviour
     public int getNumFlasks()
     {
         return numFlasks;
+    }
+
+    public void setNumFlasks(int flasks)
+    {
+        numFlasks = flasks;
     }
 }

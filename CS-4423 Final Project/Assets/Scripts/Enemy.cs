@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    void OnEnable()
+    {
+        currentHealth = maxHealth;
+    }
+
     public void TakeDmg(int damage)
     {
         currentHealth -= damage;
@@ -51,7 +56,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy died");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     
