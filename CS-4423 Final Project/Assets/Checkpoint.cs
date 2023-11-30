@@ -26,19 +26,22 @@ public class Checkpoint : MonoBehaviour
         {
             //Time.timeScale = 0;
 
-            
-            PlayerPrefs.SetInt(SaveFlags.checkpointString,checkpointID);
-            player.GetComponent<Player>().setCurrHealth(player.GetComponent<Player>().getMaxHealth());
-            player.GetComponent<Player>().setNumFlasks(3);
-            Debug.Log("checkpoint activated");
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                PlayerPrefs.SetInt(SaveFlags.checkpointString,checkpointID);
+                player.GetComponent<Player>().setCurrHealth(player.GetComponent<Player>().getMaxHealth());
+                player.GetComponent<Player>().setNumFlasks(3);
+                Debug.Log("checkpoint activated");
 
-            //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            //foreach(GameObject enemy in enemies)
-            //{
-            //    enemy.SetActive(true);
-            //    Debug.Log("Activate enemy");
-           // }
-            SceneManager.LoadScene("GameScene");
+                //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                //foreach(GameObject enemy in enemies)
+                //{
+                //    enemy.SetActive(true);
+                //    Debug.Log("Activate enemy");
+            // }
+                SceneManager.LoadScene("GameScene");
+            }
+           
         }
     }
 

@@ -63,9 +63,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(this.transform.position.y > 20)
+        //if(this.GetComponent<Transform>.transform.y > 20)
         {
-            Die();
+            //Die();
         }
 
 
