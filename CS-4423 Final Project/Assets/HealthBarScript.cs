@@ -29,11 +29,12 @@ public class HealthBarScript : MonoBehaviour
         {
             healthBar.value = player.GetComponent<Player>().getCurrHealth();
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.K))
         {
             currentHealth -= 1;
         }
+        */
     }
 
     

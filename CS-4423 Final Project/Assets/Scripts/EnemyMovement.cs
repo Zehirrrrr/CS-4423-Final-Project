@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     [SerializeField] float speed = 1;
+    [SerializeField] float size;
     
     
     
@@ -38,11 +39,11 @@ public class EnemyMovement : MonoBehaviour
 
             if(vel.x > 0)
             {
-                transform.localScale = new Vector3(1,1,1);
+                transform.localScale = new Vector3(1,1,0);
             }
             else if(vel.x < 0)
             {
-                transform.localScale = new Vector3(-1,1,1);
+                transform.localScale = new Vector3(-1,1,0);
             }
         }
         else

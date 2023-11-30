@@ -59,7 +59,20 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    
+    public int getCurrHealth()
+    {
+        return currentHealth;
+    }
+
+    public void setCurrHealth(int health)
+    {
+        currentHealth = health;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
 
     
 }
