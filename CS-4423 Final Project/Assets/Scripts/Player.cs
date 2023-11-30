@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] int numFlasks;
     [SerializeField] ParticleSystem heal;
+
+    public UnityEvent onDeathEvent;
     
     // Start is called before the first frame update
     void Start()
@@ -76,7 +79,13 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player died");
+        //Debug.Log("Player died");
+        onDeathEvent.Invoke();
+        
+    }
+
+    public void LoadMainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 
