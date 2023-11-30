@@ -14,6 +14,8 @@ public class Checkpoint : MonoBehaviour
     public int checkpointID;
     //[SerializeField] Text bonfireText;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,13 @@ public class Checkpoint : MonoBehaviour
             GetComponentInChildren<Canvas>().enabled = false;
         }
 
+        
+
        
+    }
+
+    public void SetCheckPointToStart()
+    {
+        PlayerPrefs.SetInt(SaveFlags.checkpointString, 0);
     }
 }

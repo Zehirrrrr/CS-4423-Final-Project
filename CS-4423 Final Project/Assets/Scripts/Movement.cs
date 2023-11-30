@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Movement : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform checkGround;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask deathLayer;
 
     [SerializeField] AnimationStateChanger animationStateChanger;
+    public UnityEvent deathBlockEvent;
 
     void Awake()
     {
@@ -31,6 +34,11 @@ public class Movement : MonoBehaviour
     private bool onGround()
     {
         return Physics2D.OverlapCircle(checkGround.position,0.2f, groundLayer);
+    }
+
+    private bool onDeath()
+    {
+        return Physics2D.OverlapCircle(checkGround.position,0.2f, deathLayer);
     }
     
     public void moveRB(Vector3 vel)
@@ -89,6 +97,11 @@ public class Movement : MonoBehaviour
             transform.position -= new Vector3(0,speed*Time.deltaTime,0);
         }
         */
+
+        if(onDeath())
+        {
+            deathBlockEvent.Invoke();
+        }
 
         moveRB(vel);
     }

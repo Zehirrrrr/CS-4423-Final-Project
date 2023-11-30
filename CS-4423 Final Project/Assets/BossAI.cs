@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleAI : MonoBehaviour
+public class BossAI : MonoBehaviour
 {
-    EnemyMovement movement;
-    EnemyCombat combat;
-    Enemy enemy;
+    BossMovement movement;
+    BossCombat combat;
+    Boss enemy;
 
     [SerializeField] float viewRadius = 5;
     [SerializeField] float attackRadius = 1;
@@ -22,9 +22,9 @@ public class SimpleAI : MonoBehaviour
     
     void Awake()
     {
-        movement = GetComponent<EnemyMovement>();
-        combat = GetComponent<EnemyCombat>();
-        enemy = GetComponent<Enemy>();
+        movement = GetComponent<BossMovement>();
+        combat = GetComponent<BossCombat>();
+        enemy = GetComponent<Boss>();
         enemySprite = GetComponent<SpriteRenderer>();
     }
 
@@ -52,8 +52,6 @@ public class SimpleAI : MonoBehaviour
         else if(Vector3.Distance(transform.position,playerTransform.position) < viewRadius && enemy.stunned == false)
         {
             FollowPlayer();
-
-            
         }
         
         else if(enemy.stunned == true)
@@ -84,7 +82,7 @@ public class SimpleAI : MonoBehaviour
         yield return new WaitForSeconds(2f);
         enemySprite.color = new Color(1,1,1,1);
         enemy.stunned = false;
-        enemy.currentPosture = 2;
+        enemy.currentPosture = 3;
     }
 
     

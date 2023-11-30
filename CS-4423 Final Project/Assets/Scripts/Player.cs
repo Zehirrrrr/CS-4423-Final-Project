@@ -14,8 +14,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] int numFlasks;
     [SerializeField] ParticleSystem heal;
+    [SerializeField] ParticleSystem voidParticles;
+    [SerializeField] AudioSource healSFX;
+    [SerializeField] AudioSource hurtSFX;
 
     public UnityEvent onDeathEvent;
+    public UnityEvent pauseEvent;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,7 @@ public class Player : MonoBehaviour
     public void TakeDmg(int damage)
     {
         currentHealth -= damage;
+        hurtSFX.Play();
         blood.Emit(5);
         if(currentHealth <= 0)
         {
@@ -42,6 +47,7 @@ public class Player : MonoBehaviour
             if(currentHealth != maxHealth && numFlasks > 0)
             {
                     numFlasks = numFlasks - 1;
+                    healSFX.Play();
                     heal.Emit(5);
                     currentHealth = maxHealth;
                     Debug.Log("Player Healed, Flasks left =" + numFlasks);
@@ -73,7 +79,8 @@ public class Player : MonoBehaviour
 
 
         Heal();
-        ExitToMainMenu();
+        pauseGame();
+        //ExitToMainMenu();
     }
     
 
@@ -84,9 +91,25 @@ public class Player : MonoBehaviour
         
     }
 
+    public void pauseGame()
+    {
+        if(Input.GetKeyDown("escape"))
+        pauseEvent.Invoke();
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void backToCheckpoint()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void enableVoidParticles()
+    {
+        voidParticles.Play();
     }
 
     void ExitToMainMenu()
@@ -95,6 +118,11 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     void Stun()

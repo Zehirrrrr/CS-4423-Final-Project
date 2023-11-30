@@ -1,27 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-    EnemyMovement movement;
+    BossMovement movement;
 
-    [SerializeField] int maxHealth = 10;
-    public int postureHealth = 2;
+    [SerializeField] int maxHealth = 30;
+    public int postureHealth = 3;
     public bool stunned;
     public int currentPosture;
     public int currentHealth;
     [SerializeField] ParticleSystem blood;
-    public UnityEvent bossDeath;
-    [SerializeField] AudioSource hurtSFX;
-    
     
 
     void Awake()
     {
-        movement = GetComponent<EnemyMovement>();
+        movement = GetComponent<BossMovement>();
         currentPosture = postureHealth;
     }
     
@@ -39,7 +34,6 @@ public class Enemy : MonoBehaviour
     public void TakeDmg(int damage)
     {
         currentHealth -= damage;
-        hurtSFX.Play();
         blood.Emit(5);
         if(currentHealth <= 0)
         {
@@ -61,35 +55,8 @@ public class Enemy : MonoBehaviour
     
     void Die()
     {
-        //Debug.Log("Enemy died");
-
-        if(this.tag == "Boss")
-        {
-            gameObject.SetActive(false);
-            bossDeath.Invoke();
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-        
-    }
-
-    public void bossDie()
-    {
-        //yield return new WaitForSeconds(5);
+        Debug.Log("Enemy died");
         gameObject.SetActive(false);
-        
-    }
-
-    public void LoadMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void loadMenuAfterDelay()
-    {
-        Invoke("LoadMenu",10);
     }
 
     public int getCurrHealth()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombat : MonoBehaviour
+public class BossCombat : MonoBehaviour
 {
 
     [SerializeField] Transform attackPoint;
@@ -17,8 +17,6 @@ public class EnemyCombat : MonoBehaviour
 
     [SerializeField] AnimationStateChanger animationStateChanger;
     [SerializeField] Animator animator;
-
-    [SerializeField] AudioSource attackSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +51,6 @@ public class EnemyCombat : MonoBehaviour
     {
         //Play Animation
         animator.SetTrigger("Attack");
-        attackSFX.Play();
         //Detect Enemies
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
 
