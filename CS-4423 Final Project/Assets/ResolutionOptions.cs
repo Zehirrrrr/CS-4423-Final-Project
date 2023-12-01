@@ -42,7 +42,6 @@ public class ResolutionOptions : MonoBehaviour
     {
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, toggle.isOn);
         PlayerPrefs.SetInt("Resolution Selection", resolutionDropdown.value);
-        
        
         
     }
