@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeathBlock
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: e7f6ea4a515973245b8453e55a30488a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_Transform:
     e00: 1
     e01: 0
