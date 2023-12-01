@@ -13,6 +13,7 @@ public class MainMenuHandler : MonoBehaviour
        //loadGameScene();
        
         //lSceneManager.LoadScene("GameScene");
+        Time.timeScale = 1;
         SceneManager.LoadScene("GameScene");
         
    }

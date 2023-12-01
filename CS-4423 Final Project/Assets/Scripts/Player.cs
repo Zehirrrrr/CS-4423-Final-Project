@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource healSFX;
     [SerializeField] AudioSource hurtSFX;
 
-    public UnityEvent onDeathEvent;
+    //public UnityEvent onDeathEvent;
     public UnityEvent pauseEvent;
     
     // Start is called before the first frame update
@@ -87,8 +87,8 @@ public class Player : MonoBehaviour
     void Die()
     {
         //Debug.Log("Player died");
-        onDeathEvent.Invoke();
-        
+        //onDeathEvent.Invoke();
+        backToCheckpoint();
     }
 
     public void pauseGame()
