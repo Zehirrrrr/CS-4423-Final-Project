@@ -67,7 +67,11 @@ public class PlayerCombat : MonoBehaviour
         //Apply DMG
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDmg(attackDamage);
+            if(enemy.enabled)
+            {
+                enemy.GetComponent<Enemy>().TakeDmg(attackDamage);
+            }
+            
             //Debug.Log("We hit " + enemy.name);
         }
     }
